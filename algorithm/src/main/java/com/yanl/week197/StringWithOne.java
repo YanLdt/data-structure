@@ -14,6 +14,22 @@ package com.yanl.week197;
 
 public class StringWithOne {
     public int numSub(String s) {
-        return 0;
+        int oneCount = 0;
+        long res = 0;
+        int mod = (int)Math.pow(10, 9) + 7;
+        for(char c : s.toCharArray()){
+            if(c == '1'){
+                oneCount++;
+            }else if(oneCount > 0){
+                res += (long)oneCount * (oneCount + 1) / 2;
+                if(res > mod){
+                    res = res % mod;
+                }
+                oneCount = 0;
+            }
+        }
+        res += (long)oneCount * (oneCount + 1) / 2;
+        res = res % mod;
+        return (int)res;
     }
 }
