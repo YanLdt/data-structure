@@ -2,6 +2,7 @@ package com.yanl.week197;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -31,16 +32,28 @@ public class MaxProbabilityPath {
         if(n == 0){
             return 0;
         }
-        List<List<int[]>> graph = new ArrayList<>();
-        for(int i = 0; i < n; i++){
-            graph.add(new ArrayList<>());
-        }
-        for(int i = 0; i < edges.length; i++){
-            int[] edge = edges[i];
-            graph.get(edge[0]).add(new int[]{i, edge[1]});
-            graph.get(edge[1]).add(new int[]{i, edge[0]});
-            
-        }
-        return 0;
+        double[] probs = new double[n];
+        //起点为1
+        probs[start] = 1;
+        while(true){
+            boolean flag = false;
+            for(int i = 0; i < edges.length; i++){
+                if(probs[edges[i][0]] * succProb[i] > probs[edges[i][1]]){
+                    probs[edges[i][1]] = probs[edges[i][0]] * succProb[i];
+                    flag = true;
+                }
+                //无向图 再反向遍历一遍
+                if(probs[edges[i][1]] * succProb[i] > probs[edges[i][0]]){
+                    probs[edges[i][0]] = probs[edges[i][1]] * succProb[i];
+                    flag = true;
+                }
+            }
+            System.out.println(Arrays.toString(probs));
+
+            if(!flag){
+                break;
+            }  
+        } 
+        return probs[end];
     }
 }
