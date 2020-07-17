@@ -48,7 +48,6 @@ public class MaxProbabilityPath {
                     flag = true;
                 }
             }
-            System.out.println(Arrays.toString(probs));
 
             if(!flag){
                 break;
