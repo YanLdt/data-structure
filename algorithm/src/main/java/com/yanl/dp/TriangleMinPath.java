@@ -6,6 +6,7 @@ package com.yanl.dp;
  * @LastModifiedBy:   
  * @LastEditTime: 2020-07-14 14:14:31
  * @Description: 请输入...
+ * leetcode 120
  * 给定一个三角形，找出自顶向下的最小路径和。每一步只能移动到下一行中相邻的结点上。
  * 相邻的结点 在这里指的是 下标 与 上一层结点下标 相同或者等于 上一层结点下标 + 1 的两个结点。
  * 例如，给定三角形：
@@ -19,7 +20,6 @@ package com.yanl.dp;
  * 自顶向下的最小路径和为 11（即，2 + 3 + 5 + 1 = 11）。
  */
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TriangleMinPath {
@@ -37,7 +37,7 @@ public class TriangleMinPath {
         //     }
         // }
 
-        //空间优化---使用一位数组
+        //空间优化---使用一维数组
         int[] res = new int[triangle.size() +1];
         for(int i = triangle.size() - 1; i >= 0; i--){
             List<Integer> tmp = triangle.get(i);
