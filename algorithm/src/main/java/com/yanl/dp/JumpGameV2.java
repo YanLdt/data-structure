@@ -11,12 +11,26 @@ package com.yanl.dp;
  * 
  * 假设你总是可以到达数组的最后一个位置。
  * 
- * dp[i]表示从0到i的最小次数
- * 递推关系--
+ * 
  */
 public class JumpGameV2 {
     public int jump(int[] nums) {
-        
-        return 0;
+        if(nums.length == 1){
+            return 0;
+        }
+        int reach = 0;
+        int nextReach = nums[0];
+        int res = 0;
+        for(int i = 0; i < nums.length; i++){
+            nextReach = Math.max(i + nums[i], nextReach);
+            if(nextReach >= nums.length - 1){
+                return res + 1;
+            }
+            if(i == reach){
+                res++;
+                reach = nextReach;
+            }
+        }
+        return res;
     }
 }
